@@ -1,6 +1,6 @@
 ---
 name: vust-ui-style
-description: 使用 VUST Design Language (VDL)、公开 Token 与 VUST 自研组件设计、实现、审查或重构 Vue 3 和 React 19 的安全运维界面。用于窗口应用、Dashboard、管理页、表格、表单、日志、ECharts、Monaco、xterm、响应式布局、主题与可访问性任务。
+description: 使用 VUST Design Language (VDL)、公开 Token 与 VUST 自研组件设计、实现、审查或重构 Vue 3 和 React 19 的安全运维界面。用于窗口应用、Dashboard、表格、表单、日志、响应式布局、主题、Liquid Glass 材质与可访问性任务；材质能力按目标框架和安装版本确认。
 ---
 
 # VUST UI Style
@@ -31,6 +31,7 @@ node scripts/inspect-vust-context.mjs --root <consumer-project>
 | 任务 | 必读参考 |
 | --- | --- |
 | Token、主题、颜色、字体、间距、圆角、密度 | `references/tokens-and-style.md` |
+| Liquid Glass、玻璃质感、折射、透明表面对比度 | `references/liquid-glass.md` + 目标框架参考 |
 | 组件、表格、表单、按钮、Dialog、Drawer | `references/components.md` + 对应框架参考 |
 | 窗口应用、Dashboard、管理页、日志页、详情页 | `references/page-patterns.md` + 对应框架参考 |
 | ECharts、Monaco、xterm、视觉或交付 QA | `references/visual-qa.md` |
@@ -41,6 +42,7 @@ node scripts/inspect-vust-context.mjs --root <consumer-project>
 
 - 优先使用当前项目已安装的 `VUST*` 组件，不引入 Element Plus、Ant Design、Naive UI 等替代框架。
 - 使用 `@vustcc/tokens` 的 VDL 语义变量；不要在业务代码中重建主题或散落硬编码颜色。
+- 品牌色和状态语义不限定材质表现；液态玻璃按合成后的背景、前景与边缘分别评估，不直接套用实色表面的配色。用户已认可的效果作为本次调整基线。
 - 沿用消费项目现有国际化、路由、状态管理、测试和代码风格；不要假设存在 `frontend/src/locales`、Pinia 或特定目录。
 - 为页面和关键区域提供稳定、可搜索的 `data-page`、`data-ui`、`data-slot`。
 - 使用项目既有结构标签约定。VUST 窗口和高密度管理界面默认用稳定容器层组织，不为装饰增加多余语义层级。
@@ -53,7 +55,7 @@ node scripts/inspect-vust-context.mjs --root <consumer-project>
 1. 检查正常、加载、空、错误、禁用和权限不足状态。
 2. 检查键盘路径、焦点、ARIA 名称、浅色/深色主题、窄窗口与长文本。
 3. 从目标项目 `package.json` 读取并运行现有 format、lint、type-check、test、build 命令；不要硬编码主控命令到其它仓库。
-4. 修改 `vust-ui` 源码时运行该仓库定义的完整检查；只消费发布包时不得改写 `node_modules`。
+4. 修改 `vust-ui` 源码时运行目标范围对应的类型、构建和回归检查；Vue 专项优先使用仓库已有 Vue 专用入口，避免混合入口越界验证 React。只消费发布包时不得改写 `node_modules`。
 5. 涉及图表、编辑器、终端或复杂响应式布局时，用浏览器或截图检查常用桌面尺寸和窄窗口尺寸。
 
 ## 产品气质

@@ -32,6 +32,16 @@ export function ExampleView() {
 }
 ```
 
+## Liquid Glass 接入
+
+与 Vue 共用 [liquid-glass.md](liquid-glass.md) 的材质规范。具体组件属性、Provider 导出和类型名称以 `@vustcc/react` 安装版本为准。
+
+- 适用组件默认玻璃化；`glass` 用于配置覆盖或关闭效果，不作为必须显式开启的开关。
+- 统一参数语义为 `intensity`、`refraction`、`blur`、`opacity`、`highlight`；默认值来自共享 tokens，组件局部配置优先于 Provider 与库默认配置。
+- 使用 React state 更新材质配置，保留业务组件身份、输入和焦点；不要改变 `key` 强制刷新材质。
+- Portal 浮层显式携带解析后的主题、Token 和滤镜引用；检查卸载清理和配置更新，不依赖原位置的 DOM 继承。
+- React 专项只验证 React 与必要共享依赖；双端任务分别提供验证证据，不将另一端的结果直接视为通过。
+
 ## 项目适配
 
 - 沿用项目现有 hooks、状态管理、路由和 i18n；不要擅自引入新的全局状态或路由库。
